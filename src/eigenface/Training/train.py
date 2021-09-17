@@ -1,11 +1,9 @@
 import numpy as np
 from numpy import linalg as LA
 import matplotlib.pyplot as plt
-import matplotlib.image as pim
 from pathlib import Path
 
-import image_process as pro
-
+from src.eigenface.common import image_process as pro
 
 width = 60  # the standard width, in pixels, of images
 height = 90  # the standard height, in pixels, of images
@@ -41,7 +39,7 @@ np.save('ave_face.npy', ave)
 
 # Test
 Keys = np.transpose(Data) @ U
-Test = pro.process_img('Data/Cersei1.png', face_dim)
+Test = pro.process_img('Data/Roven1.png', face_dim)
 Test = Test - ave
 TKey = Test @ U
 output = []

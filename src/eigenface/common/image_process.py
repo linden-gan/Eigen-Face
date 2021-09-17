@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+from src.eigenface.common import LBP
 
 
 def process_img(file_name, dim):
@@ -11,15 +12,17 @@ def process_img(file_name, dim):
     """
     image = cv.imread(file_name, 0)  # read gray-scale
     image = cv.resize(image, dim)  # resize to standard resolution
-    image = np.array(image).flatten()  # transform to an array
+    image = np.array(image)  # transform to numpy matrix
+    #image = LBP.get_texture(image)  # extract texture
+    image = image.flatten()  # transform to an array
 
-    model = cv.imread('Model_Medium.png', 0)  # read gray-scale
+    model = cv.imread('../common/Model_Medium.png', 0)  # read gray-scale
     model = cv.resize(model, dim)  # resize to standard resolution
     model = np.array(model).flatten()  # transform to an array
 
     # scoop face from image according to model
     for k in range(0, len(model)):
-        if model[k] < 5:
+        if model[k] < 2:
             image[k] = 0
 
     return image / 255
