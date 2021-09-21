@@ -34,9 +34,22 @@ def get_bin(matrix, i, j):
     return bina
 
 
-image = cv.imread('../Training/Data/Cheng2.jpg', 0)  # read gray-scale
-image = cv.resize(image, (150, 200))  # resize to standard resolution
-image = np.array(image)  # transform to numpy matrix
-image = get_texture(image)  # extract texture
-plt.imshow(image)
-plt.show()
+# image = cv.imread('src/eigenface/Training/Data/Cheng2.jpg', 0)  # read gray-scale
+# image = cv.resize(image, (150, 200))  # resize to standard resolution
+# image = np.array(image)  # transform to numpy matrix
+# image = get_texture(image)  # extract texture
+# plt.imshow(image)
+# plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+

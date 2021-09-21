@@ -4,11 +4,11 @@ from src.eigenface.common import image_process as pro
 
 
 def sign_up():
-    U = np.load('../Training/eigen_space.npy')  # load eigenface
-    keys = np.load('../../db/user_keys.npy')  # load all users' keys in db
-    ave = np.load('../Training/ave_face.npy')  # load average face
+    U = np.load('src/eigenface/Training/eigen_space.npy')  # load eigenface
+    keys = np.load('src/db/user_keys.npy')  # load all users' keys in db
+    ave = np.load('src/eigenface/Training/ave_face.npy')  # load average face
 
-    user = pro.process_img('input.png', (60, 90))  # preprocess user's image
+    user = pro.process_img('src/eigenface/Service/input.png', (60, 90))  # preprocess user image
     user = user - ave
     Ukey = user @ U  # project it to eigenface space to get its key
 
@@ -19,4 +19,13 @@ def sign_up():
     new_keys.append(Ukey)
     new_keys = np.array(new_keys)
 
-    np.save('../../db/user_keys.npy', new_keys)
+    np.save('src/db/user_keys.npy', new_keys)
+
+
+
+
+
+
+
+
+

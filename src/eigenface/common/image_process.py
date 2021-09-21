@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 from src.eigenface.common import LBP
+import matplotlib.pyplot as plt
 
 
 def process_img(file_name, dim):
@@ -16,7 +17,7 @@ def process_img(file_name, dim):
     #image = LBP.get_texture(image)  # extract texture
     image = image.flatten()  # transform to an array
 
-    model = cv.imread('../common/Model_Medium.png', 0)  # read gray-scale
+    model = cv.imread('src/eigenface/common/Model_Medium.png', 0)  # read gray-scale
     model = cv.resize(model, dim)  # resize to standard resolution
     model = np.array(model).flatten()  # transform to an array
 
@@ -26,3 +27,19 @@ def process_img(file_name, dim):
             image[k] = 0
 
     return image / 255
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
