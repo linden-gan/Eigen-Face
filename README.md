@@ -50,5 +50,7 @@ by those eigenvectors. Projection is the best approximation we can make. Now, we
 A, its key is `1.6`, `-10.4`, ..., `0,01`. Note that these keys can best capture the main characteristics of a human face, since 
 it's derived from the eigenvectors. We store each user's key in database, and when someone scans their face to try to log in, we use
 the same method to generate a key for this unknown face, and compare this key to keys in database. If the difference (2-norm) between
- this face and a face in our database is small enough, then we are confident to say that these two faces belong to the same person. So,
- we can let them log in.
+this face and a face in our database is small enough, then we are confident to say that these two faces belong to the same person. So,
+we recognize this user and allow they to log in.
+ 
+That's pretty much the general picture of this project. Feel free to check or download the code for greater detail.
