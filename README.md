@@ -27,3 +27,19 @@ To help you navigate through my project, here is the navigator:
 - templates: also by Flask's convention, it's necessary to put the html file into a 
   directory called "templates".
 - main.py: the main/server of this project.
+
+## Overview
+Generally, you can view this project as a sample machine learning model project. Our goal is to have a model so that 
+given an input human face image, it can analyze the main components of this face and compare to existing faces in our
+database, and eventually determine whether the person this face belongs to is in our recognized user or not. 
+
+First, similar to almost every machine learning process, we train our model. The specific training code is in train.py
+inside of the Training directory (I didn't commit my training data file since it contains my friends' and my private photos
+(yeah we need human faces :P), which means you need to collect your training data by your own). Basically, the mathematical
+abstraction of training is just linear algebra: an image is merely a set of numerous RGB values, and by converting it to
+grey scale, we can have a vector with n entries with values from 0 to 255. Assume we have m images, then we can put these m
+image vectors into the m rows of a matrix, thus forming an m by n matrix M. We compute the dot product of M and M's transpose, 
+which is M's covariance matrix. Next, we compute the eigenvectors of it. Each eigenvector represent one component, or
+dimension/characteristic, of a human face.
+
+Now, suppose we have $\alpha$
