@@ -37,9 +37,18 @@ First, similar to almost every machine learning process, we train our model. The
 inside of the Training directory (I didn't commit my training data file since it contains my friends' and my private photos
 (yeah we need human faces :P), which means you need to collect your training data by your own). Basically, the mathematical
 abstraction of training is just linear algebra: an image is merely a set of numerous RGB values, and by converting it to
-grey scale, we can have a vector with n entries with values from 0 to 255. Assume we have m images, then we can put these m
-image vectors into the m rows of a matrix, thus forming an m by n matrix M. We compute the dot product of M and M's transpose, 
-which is M's covariance matrix. Next, we compute the eigenvectors of it. Each eigenvector represent one component, or
+grey scale, we can have a vector with _n_ entries with values from 0 to 255. Assume we have _m_ images, then we can put these _m_
+image vectors into the _m_ rows of a matrix, thus forming an _m_ by _n_ matrix _M_. We compute the dot product of _M_ and _M_'s transpose, 
+which is _M_'s covariance matrix. Next, we compute the eigenvectors of it. Each eigenvector represent one component, or
 dimension/characteristic, of a human face.
 
-Now, suppose we have $\alpha$
+Now, suppose we have eigenvectors e_1, e_2, e_3, ..., e_m. Note that eigenvectors with the bigger eigenvalues are more
+"important", or "dominant", and vice versa. Now, we can concisely represent any human faces by the linear combination
+of these _m_ eigenvectors. For example, face _A_ is approximately `1.6` times e_1 plus `-10.4` times e_2 plus ... plus `0.01` times
+e_m. By approximately, it means we are actually working on the _projection_ of face _A_ to the characteristic subspace spanned
+by those eigenvectors. Projection is the best approximation we can make. Now, we can have a unique "key" for each face! For face
+A, its key is `1.6`, `-10.4`, ..., `0,01`. Note that these keys can best capture the main characteristics of a human face, since 
+it's derived from the eigenvectors. We store each user's key in database, and when someone scans their face to try to log in, we use
+the same method to generate a key for this unknown face, and compare this key to keys in database. If the difference (2-norm) between
+ this face and a face in our database is small enough, then we are confident to say that these two faces belong to the same person. So,
+ we can let them log in.
